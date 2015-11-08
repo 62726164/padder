@@ -16,17 +16,17 @@ open-source OpenPGP implementation such as GnuPG (https://gnupg.org/).
 
 * Encryption
 
-    padder --e --m black --p e7vwd
+    padder -e -m black -p e7vwd
     CipherText: fhvyn
 
 * Decryption
 
-    padder --d --m fhvyn --p e7vwd
+    padder -d -m fhvyn -p e7vwd
     PlainText: black
 
 * Fake Message and Pad Generation
  
-    padder --f --m white --c fhvyn
+    padder -f -m white -c fhvyn
     FakePad: uanfj
 
 * Message Transmission
