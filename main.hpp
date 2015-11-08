@@ -33,18 +33,18 @@ bool FAKEPAD                 = false;
 bool ENCRYPT                 = false;
 
 const std::string characters = "abcdefghijklmnopqrstuvwxyz0123456789-";
-const std::string version    = "padder 1.0";
+const std::string version    = "padder 1.0a";
 const std::string usage      = version + " flags: \n \
---c  the ciphertext to generate a fake pad (requires --f)\n \
---d  decrypt the message\n \
---D  enable verbose debugging\n \
---e  encrypt the message\n \
---f  generate a fake pad (requires --c)\n \
---h  show this help\n \
---m  the message\n \
---p  the pad\n \
---t  run tests and exit\n \
---v  show version and exit\n";
+-c  the ciphertext to generate a fake pad (requires -f)\n \
+-d  decrypt the message\n \
+-D  enable verbose debugging\n \
+-e  encrypt the message\n \
+-f  generate a fake pad (requires -c)\n \
+-h  show this help\n \
+-m  the message\n \
+-p  the pad\n \
+-t  run tests and exit\n \
+-v  show version and exit\n";
 
 std::string cph                            = "";
 std::string msg                            = "";

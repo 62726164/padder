@@ -31,22 +31,22 @@ int main( int argc, char* argv[] )
     vec flags;
     load_flags( argc, argv, flags );
 
-    if( std::find( flags.begin(), flags.end(), "--D" ) != flags.end() )
+    if( std::find( flags.begin(), flags.end(), "-D" ) != flags.end() )
     {
         DEBUG = true;
     }
 
-    if( std::find( flags.begin(), flags.end(), "--d" ) != flags.end() )
+    if( std::find( flags.begin(), flags.end(), "-d" ) != flags.end() )
     {
         DECRYPT = true;
     }
 
-    if( std::find( flags.begin(), flags.end(), "--e" ) != flags.end() )
+    if( std::find( flags.begin(), flags.end(), "-e" ) != flags.end() )
     {
         ENCRYPT = true;
     }
 
-    if( std::find( flags.begin(), flags.end(), "--f" ) != flags.end() )
+    if( std::find( flags.begin(), flags.end(), "-f" ) != flags.end() )
     {
         FAKEPAD = true;
         rng.seed( combine( rd(), urandom(), std::time(nullptr) ) );
@@ -59,26 +59,26 @@ int main( int argc, char* argv[] )
         }
     }
 
-    if( argc == 1 || std::find( flags.begin(), flags.end(), "--h" ) != flags.end() )
+    if( argc == 1 || std::find( flags.begin(), flags.end(), "-h" ) != flags.end() )
     {
         std::cout << usage;
         return 0;
     }
 
-    if( std::find( flags.begin(), flags.end(), "--t" ) != flags.end() )
+    if( std::find( flags.begin(), flags.end(), "-t" ) != flags.end() )
     {
         test();
         return 0;
     }
 
-    if( std::find( flags.begin(), flags.end(), "--v" ) != flags.end() )
+    if( std::find( flags.begin(), flags.end(), "-v" ) != flags.end() )
     {
         std::cout << version << "\n";
         return 0;
     }
 
     // Get msg and make sure it only contains valid chars
-    if( get_value( flags, "--m", msg ) )
+    if( get_value( flags, "-m", msg ) )
     {
         if( !good_string( msg ) )
         {
@@ -95,7 +95,7 @@ int main( int argc, char* argv[] )
     // Get pad and make sure it only contains valid chars
     if( !FAKEPAD )
     {
-        if( get_value( flags, "--p", pad ) )
+        if( get_value( flags, "-p", pad ) )
         {
             if( !good_string( pad ) )
             {
@@ -113,7 +113,7 @@ int main( int argc, char* argv[] )
     if( FAKEPAD )
     {
         pad = "none";
-        if( get_value( flags, "--c", cph ) )
+        if( get_value( flags, "-c", cph ) )
         {
             if( !good_string( cph ) )
             {
@@ -131,7 +131,7 @@ int main( int argc, char* argv[] )
     // Sanity Checks
     if( ENCRYPT && DECRYPT )
     {
-        std::cerr << "Specify either --e (encrypt) or --d (decrypt), not both.\n";
+        std::cerr << "Specify either -e (encrypt) or -d (decrypt), not both.\n";
         return 1;
     }
 
