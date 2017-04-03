@@ -10,7 +10,7 @@ Padder should not be used in real-world situations that require encryption. If
 you need strong message encryption, do not use padder. Use a well-regarded,
 open-source OpenPGP implementation such as GnuPG (https://gnupg.org/).
 
-## Installation
+## To Build
 
 ```bash
 $ cd /to/padder/folder
