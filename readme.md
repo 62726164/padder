@@ -12,23 +12,23 @@ open-source OpenPGP implementation such as GnuPG (https://gnupg.org/).
 
 ## The Padder Character Set
 ```bash
-    abcdefghijklmnopqrstuvwxyz0123456789-
+abcdefghijklmnopqrstuvwxyz0123456789-
 ```
 
 ## Encryption
 
-    padder -e -m black -p e7vwd
-    CipherText: fhvyn
+$ padder -e -m black -p e7vwd
+CipherText: fhvyn
 
 ## Decryption
 
-    padder -d -m fhvyn -p e7vwd
-    PlainText: black
+$ padder -d -m fhvyn -p e7vwd
+PlainText: black
 
 ## Fake Message and Pad Generation
  
-    padder -f -m white -c fhvyn
-    FakePad: uanfj
+$ padder -f -m white -c fhvyn
+FakePad: uanfj
 
 ## Message Transmission
 
