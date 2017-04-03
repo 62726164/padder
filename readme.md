@@ -17,18 +17,24 @@ abcdefghijklmnopqrstuvwxyz0123456789-
 
 ## Encryption
 
+```bash
 $ padder -e -m black -p e7vwd
 CipherText: fhvyn
+```
 
 ## Decryption
 
+```bash
 $ padder -d -m fhvyn -p e7vwd
 PlainText: black
+```
 
 ## Fake Message and Pad Generation
  
+```bash
 $ padder -f -m white -c fhvyn
 FakePad: uanfj
+```
 
 ## Message Transmission
 
