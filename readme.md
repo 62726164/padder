@@ -1,35 +1,36 @@
-* Introduction
+# padder
 
 Padder is a one-time pad software implementation intended for educational 
 purposes and experimentation. It can be used to encrypt and decrypt small 
 messages. Padder can also be used to generate fake pads and fake messages.
 
-* Warning
+## Warning
 
 Padder should not be used in real-world situations that require encryption. If 
 you need strong message encryption, do not use padder. Use a well-regarded,
 open-source OpenPGP implementation such as GnuPG (https://gnupg.org/).
 
-* The Padder Character Set
-
+## The Padder Character Set
+```bash
     abcdefghijklmnopqrstuvwxyz0123456789-
+```
 
-* Encryption
+## Encryption
 
     padder -e -m black -p e7vwd
     CipherText: fhvyn
 
-* Decryption
+## Decryption
 
     padder -d -m fhvyn -p e7vwd
     PlainText: black
 
-* Fake Message and Pad Generation
+## Fake Message and Pad Generation
  
     padder -f -m white -c fhvyn
     FakePad: uanfj
 
-* Message Transmission
+## Message Transmission
 
 The Padder Character Set was selected specifically for message transmission 
 over radio (HF, VHF, UHF). However, messages can be transmitted in other ways. 
@@ -37,7 +38,7 @@ Twitter, text messages, phone calls and website forums could all be used to
 send and receive messages. Encrypted messages could also be embedded in image 
 tags, HTML, or some other inconspicuous place.
 
-* Decrypt the Same Ciphertext to Multiple Plaintexts
+## Decrypt the Same Ciphertext to Multiple Plaintexts
 
 One-time pad encrypted messages can be decrypted to virtually any plaintext 
 message by using different pads. This feature is useful for creating 
@@ -56,7 +57,7 @@ diversions. It may also provide for plausible deniability. This requires two
         ctxt: c2wrbumxvj8gob34mxn46pxg29a6kxnwfhcaam3en-hr-2v 
         pad:  zifs6d9dgk36k94m9d5x77jhj277ip59gw9btmv4j7in-kc
 
-* Security Considerations & Precautions
+## Security Considerations & Precautions
 
 Pads must be random, kept secret, only used once and destroyed immediately 
 after use. Should the same pad be used to encrypt more than one message, those 
@@ -87,7 +88,7 @@ range of the signal may relay the messages to stations out of range.
 
 One-time pad encrypted messages are not authenticated. 
 
-* General Notes
+## General Notes
 
 Plaintext messages, pads and ciphertext messages must only contain characters 
 from the Padder Character Set. Capitalization, punctuation and spaces are not 
