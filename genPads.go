@@ -6,6 +6,8 @@ import (
 	"math/big"
 )
 
+// purpose: generate pads for use by padder.
+
 // usage: go run genPads.go > pads.txt
 
 // Map of the padder char set: "abcdefghijklmnopqrstuvwxyz0123456789-"
