@@ -32,6 +32,18 @@ func goodSize(msg, pad string) bool {
 	return true
 }
 
+// Truncate pad
+// goodSize() has already made sure that msg <= pad
+func truncatePad(msg, pad string) string {
+	// msg < pad
+	if len(msg) < len(pad) {
+		//log.Printf("TruncatePad: %s\n", pad[:len(msg)])
+		return pad[:len(msg)]
+	}
+	// msg = pad
+	return pad
+}
+
 // Get ints from a string
 func getInts(str string) []int {
 	ints := make([]int, 0)
@@ -53,7 +65,7 @@ func addInts(msg, pad []int) []int {
 	}
 
 	for i := 0; i != len(msg); i++ {
-		//fmt.Printf("%d\n", msg[i]+pad[i])
+		//log.Printf("%d\n", msg[i]+pad[i])
 		added = append(added, msg[i]+pad[i])
 	}
 	return added
@@ -68,7 +80,7 @@ func subInts(msg, pad []int) []int {
 	}
 
 	for i := 0; i != len(msg); i++ {
-		//fmt.Printf("%d\n", msg[i]-pad[i])
+		//log.Printf("%d\n", msg[i]-pad[i])
 		subed = append(subed, msg[i]-pad[i])
 	}
 	return subed

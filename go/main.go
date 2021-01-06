@@ -1,10 +1,25 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"os"
 )
 
 func main() {
+	var dflag = flag.Bool("d", false, "decrypt a message. requires -m and -p.")
+	var eflag = flag.Bool("e", false, "encrypt a message. requires -m and -p.")
+	var help = flag.Bool("help", false, "show help.")
+	var msg = flag.String("m", "", "the message to encrypt or decrypt.")
+	var pad = flag.String("p", "", "the pad to use to encrypt or decrypt.")
+
+	flag.Parse()
+
+	if *help || len(os.Args) == 1 {
+		flag.PrintDefaults()
+		return
+	}
+
 	// build the i2s map
 	for i, c := range chars {
 		i2s[i] = string(c)
@@ -15,41 +30,53 @@ func main() {
 		s2i[s] = i
 	}
 
-	fmt.Printf("i2s %v\n", i2s)
-	fmt.Printf("s2i %v\n", s2i)
+	if *eflag {
+		if goodString(*msg) {
+			if goodString(*pad) {
+				if goodSize(*msg, *pad) {
+					tpad := truncatePad(*msg, *pad)
+					mints := getInts(*msg)
+					pints := getInts(tpad)
+					aints := addInts(mints, pints)
 
-	fmt.Printf("goodString 'msg' %t\n", goodString("msg"))
-	fmt.Printf("goodString 'Msg' %t\n", goodString("Msg"))
-
-	fmt.Printf("goodSize 'black white' %t\n", goodSize("black", "white"))
-	fmt.Printf("goodSize 'blue red' %t\n", goodSize("blue", "red"))
-
-	// encrypt
-	mints := getInts("msg")
-	fmt.Printf("getInts 'msg' %v\n", mints)
-
-	pints := getInts("pad")
-	fmt.Printf("getInts 'pad' %v\n", pints)
-
-	aints := addInts(mints, pints)
-	fmt.Printf("addInts aints %v\n", aints)
-
-	var ctxt string = ""
-	for _, i := range aints {
-		ctxt += encrypt(i)
+					var ctxt string = ""
+					for _, i := range aints {
+						ctxt += encrypt(i)
+					}
+					fmt.Printf("CipherText: %s\n", ctxt)
+				} else {
+					fmt.Printf("The pad is smaller than the msg.\n")
+				}
+			} else {
+				fmt.Printf("The pad has invalid chars.\n")
+			}
+		} else {
+			fmt.Printf("The msg has invalid chars.\n")
+		}
 	}
-	fmt.Printf("CipherText: %s\n", ctxt)
 
-	// decrypt
-	cints := getInts("1sj")
-	fmt.Printf("getInts '1sj' %v\n", cints)
+	if *dflag {
+		if goodString(*msg) {
+			if goodString(*pad) {
+				if goodSize(*msg, *pad) {
+					tpad := truncatePad(*msg, *pad)
+					mints := getInts(*msg)
+					pints := getInts(tpad)
+					sints := subInts(mints, pints)
 
-	sints := subInts(cints, pints)
-	fmt.Printf("subInts sints %v\n", sints)
-
-	var ptxt string = ""
-	for _, i := range sints {
-		ptxt += decrypt(i)
+					var ptxt string = ""
+					for _, i := range sints {
+						ptxt += decrypt(i)
+					}
+					fmt.Printf("PlainText: %s\n", ptxt)
+				} else {
+					fmt.Printf("The pad is smaller than the msg.\n")
+				}
+			} else {
+				fmt.Printf("The pad has invalid chars.\n")
+			}
+		} else {
+			fmt.Printf("The msg has invalid chars.\n")
+		}
 	}
-	fmt.Printf("PlainText: %s\n", ptxt)
 }
