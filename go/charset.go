@@ -1,24 +1,23 @@
 package main
 
 import (
-	"fmt"
 	"log"
 )
 
 // The padder char set
 var chars = "abcdefghijklmnopqrstuvwxyz0123456789-"
 
-// The char to int map
-var c2i = make(map[string]string, 0)
+// The string to int map
+var s2i = make(map[string]int, 0)
 
-// The int to char map
-var i2c = make(map[string]string, 0)
+// The int to string map
+var i2s = make(map[int]string, 0)
 
 // Ensure string only has valid padder chars
 func goodString(str string) bool {
 	for _, c := range str {
-		valid := c2i[string(c)]
-		if valid == "" {
+		_, ok := s2i[string(c)]
+		if !ok {
 			return false
 		}
 	}
@@ -33,6 +32,18 @@ func goodSize(msg, pad string) bool {
 	return true
 }
 
+// Get ints from a string
+func getInts(str string) []int {
+	ints := make([]int, 0)
+
+	for _, c := range str {
+		i := s2i[string(c)]
+		ints = append(ints, i)
+	}
+
+	return ints
+}
+
 // Add msg and pad ints
 func addInts(msg, pad []int) []int {
 	added := make([]int, 0)
@@ -42,7 +53,7 @@ func addInts(msg, pad []int) []int {
 	}
 
 	for i := 0; i != len(msg); i++ {
-		fmt.Printf("%d\n", msg[i]+pad[i])
+		//fmt.Printf("%d\n", msg[i]+pad[i])
 		added = append(added, msg[i]+pad[i])
 	}
 	return added
