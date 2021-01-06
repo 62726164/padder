@@ -10,3 +10,14 @@ var c2i = make(map[string]string, 0)
 
 // The int to char map
 var i2c = make(map[string]string, 0)
+
+// Ensure string only has valid padder chars
+func goodString(str string) bool {
+	for _, c := range str {
+		valid := c2i[string(c)]
+		if valid == "" {
+			return false
+		}
+	}
+	return true
+}
