@@ -25,4 +25,7 @@ func main() {
 
 	fmt.Printf("msg: %t\n", goodString("msg"))
 	fmt.Printf("Msg: %t\n", goodString("Msg"))
+
+	fmt.Printf("black white %t\n", goodSize("black", "white"))
+	fmt.Printf("blue red %t\n", goodSize("blue", "red"))
 }

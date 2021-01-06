@@ -21,3 +21,11 @@ func goodString(str string) bool {
 	}
 	return true
 }
+
+// Ensure pad is equal to or greater than msg
+func goodSize(msg, pad string) bool {
+	if len(msg) > len(pad) {
+		return false
+	}
+	return true
+}
