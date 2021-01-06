@@ -24,6 +24,7 @@ func main() {
 	fmt.Printf("goodSize 'black white' %t\n", goodSize("black", "white"))
 	fmt.Printf("goodSize 'blue red' %t\n", goodSize("blue", "red"))
 
+	// encrypt
 	mints := getInts("msg")
 	fmt.Printf("getInts 'msg' %v\n", mints)
 
@@ -38,4 +39,17 @@ func main() {
 		ctxt += encrypt(i)
 	}
 	fmt.Printf("CipherText: %s\n", ctxt)
+
+	// decrypt
+	cints := getInts("1sj")
+	fmt.Printf("getInts '1sj' %v\n", cints)
+
+	sints := subInts(cints, pints)
+	fmt.Printf("subInts sints %v\n", sints)
+
+	var ptxt string = ""
+	for _, i := range sints {
+		ptxt += decrypt(i)
+	}
+	fmt.Printf("PlainText: %s\n", ptxt)
 }

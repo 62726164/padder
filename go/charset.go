@@ -59,6 +59,21 @@ func addInts(msg, pad []int) []int {
 	return added
 }
 
+// Subtract msg from pad ints
+func subInts(msg, pad []int) []int {
+	subed := make([]int, 0)
+
+	if len(msg) != len(pad) {
+		log.Fatal("msg and pad must be the same size!")
+	}
+
+	for i := 0; i != len(msg); i++ {
+		//fmt.Printf("%d\n", msg[i]-pad[i])
+		subed = append(subed, msg[i]-pad[i])
+	}
+	return subed
+}
+
 // Given an int, return encrypted string
 func encrypt(i int) string {
 	var tmp int = 0
@@ -68,6 +83,15 @@ func encrypt(i int) string {
 	} else {
 		tmp = i % len(chars)
 	}
+
+	return i2s[tmp]
+}
+
+// Given an int, return decrypted string
+func decrypt(i int) string {
+	var tmp int = 0
+
+	tmp = (i + len(chars)) % len(chars)
 
 	return i2s[tmp]
 }
