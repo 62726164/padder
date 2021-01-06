@@ -32,4 +32,10 @@ func main() {
 
 	aints := addInts(mints, pints)
 	fmt.Printf("addInts aints %v\n", aints)
+
+	var ctxt string = ""
+	for _, i := range aints {
+		ctxt += encrypt(i)
+	}
+	fmt.Printf("CipherText: %s\n", ctxt)
 }

@@ -58,3 +58,16 @@ func addInts(msg, pad []int) []int {
 	}
 	return added
 }
+
+// Given an int, return encrypted string
+func encrypt(i int) string {
+	var tmp int = 0
+
+	if i > len(chars)-1 {
+		tmp = (i - len(chars)) % len(chars)
+	} else {
+		tmp = i % len(chars)
+	}
+
+	return i2s[tmp]
+}
