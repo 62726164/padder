@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -std=c++11
+CXXFLAGS = -pedantic -Wall -Wextra -Werror -Wconversion -std=c++11
      
 PROGRAM = padder
 SOURCE  = main.cpp

@@ -30,7 +30,7 @@
 
 std::random_device                           rd;
 std::mt19937                                 rng;
-std::uniform_int_distribution<std::uint8_t>  dist( 0, characters.size() -1 );
+std::uniform_int_distribution<std::uint8_t>  dist( 0, chars_size_minus_1 );
 
 
 std::uint32_t combine( const std::uint32_t rd, const std::uint32_t ur, const std::uint32_t tm )

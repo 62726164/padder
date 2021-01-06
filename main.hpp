@@ -33,6 +33,7 @@ bool FAKEPAD                 = false;
 bool ENCRYPT                 = false;
 
 const std::string characters = "abcdefghijklmnopqrstuvwxyz0123456789-";
+const int chars_size_minus_1 = 36; // characters.size() - 1
 const std::string version    = "padder 1.0a";
 const std::string usage      = version + " flags: \n \
 -c  the ciphertext to generate a fake pad (requires -f)\n \
@@ -149,15 +150,15 @@ char encrypt( const std::int16_t the_int,
               const std::map<std::uint8_t, char>& numbers )
 {
     std::uint8_t tmp;
-    const std::int8_t limit = characters.size() - 1;
+    const std::int8_t limit = chars_size_minus_1;
 
     if( the_int > limit )
     {
-        tmp = ( the_int - characters.size() ) % characters.size();
+        tmp = (std::uint8_t)(( the_int - characters.size() ) % characters.size());
     }
     else
     {
-        tmp = the_int % characters.size();
+        tmp = (std::uint8_t)(the_int % characters.size());
     }
 
     return numbers.find( tmp )->second;
@@ -167,7 +168,7 @@ char encrypt( const std::int16_t the_int,
 char decrypt( const std::int16_t the_int, 
               const std::map<std::uint8_t, char>& numbers )
 {
-    const std::uint8_t tmp = (the_int + characters.size()) % characters.size();
+    const std::uint8_t tmp = (std::uint8_t)((the_int + characters.size()) % characters.size());
 
     return numbers.find( tmp )->second;
 }

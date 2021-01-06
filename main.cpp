@@ -49,7 +49,7 @@ int main( int argc, char* argv[] )
     if( std::find( flags.begin(), flags.end(), "-f" ) != flags.end() )
     {
         FAKEPAD = true;
-        rng.seed( combine( rd(), urandom(), std::time(nullptr) ) );
+        rng.seed( combine( rd(), urandom(), (std::uint32_t)std::time(nullptr) ) );
 
         if( DEBUG )
         {
