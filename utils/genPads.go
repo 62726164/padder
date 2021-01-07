@@ -38,7 +38,7 @@ func main() {
 	// Index starts at 0 and ends at 36.
 	max := big.NewInt(37)
 
-	// Print 12 pads
+	// Print *numb pads
 	fmt.Println("# Pad")
 	for pn := 1; pn <= *numb; pn++ {
 		pad := ""
