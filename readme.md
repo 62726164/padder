@@ -13,6 +13,11 @@ $ make
 abcdefghijklmnopqrstuvwxyz0123456789-
 ```
 
+## Generate pads
+```bash
+$ go run utils/genPads.go
+```
+
 ## Encrypt a message
 
 ```bash

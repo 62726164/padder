@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/rand"
+	"flag"
 	"fmt"
 	"math/big"
 )
@@ -23,14 +24,25 @@ var m = map[string]string{"0": "a", "1": "b", "2": "c", "3": "d", "4": "e", "5":
 }
 
 func main() {
+	var help = flag.Bool("help", false, "show help and exit")
+	var numb = flag.Int("n", 12, "the number of pads to generate")
+	var plen = flag.Int("l", 98, "the length of the pads")
+
+	flag.Parse()
+
+	if *help {
+		flag.PrintDefaults()
+		return
+	}
+
 	// Index starts at 0 and ends at 36.
 	max := big.NewInt(37)
 
 	// Print 12 pads
 	fmt.Println("# Pad")
-	for pn := 1; pn < 13; pn++ {
+	for pn := 1; pn <= *numb; pn++ {
 		pad := ""
-		for i := 0; i < 98; i++ {
+		for i := 0; i < *plen; i++ {
 			// Int returns a uniform random value in [0, max).
 			p, _ := rand.Int(rand.Reader, max)
 
