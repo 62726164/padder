@@ -9,14 +9,20 @@ import (
 func main() {
 	var dflag = flag.Bool("d", false, "decrypt a message. requires -m and -p.")
 	var eflag = flag.Bool("e", false, "encrypt a message. requires -m and -p.")
-	var help = flag.Bool("help", false, "show help.")
+	var help = flag.Bool("help", false, "show help and exit")
 	var msg = flag.String("m", "", "the message to encrypt or decrypt.")
 	var pad = flag.String("p", "", "the pad to use to encrypt or decrypt.")
+	var vflag = flag.Bool("v", false, "show version and exit")
 
 	flag.Parse()
 
 	if *help || len(os.Args) == 1 {
 		flag.PrintDefaults()
+		return
+	}
+
+	if *vflag {
+		fmt.Println(version)
 		return
 	}
 

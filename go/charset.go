@@ -4,6 +4,9 @@ import (
 	"log"
 )
 
+// version
+var version = "gopadder 1.0a"
+
 // The padder char set
 var chars = "abcdefghijklmnopqrstuvwxyz0123456789-"
 
