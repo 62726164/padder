@@ -101,7 +101,6 @@ void gen_fake_pad( const std::string& fake_msg, const std::string& cipher_text )
     // Generate a fake pad
     std::string fake_pad( extend( "", cipher_text ) );
 
-    get_ints( fake_msg,   ptxt_ints );
     get_ints( cipher_text, ctxt_ints );
 
     std::string::const_iterator chit, fmit, tmit;
