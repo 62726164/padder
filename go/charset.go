@@ -9,12 +9,13 @@ var version = "gopadder 1.0a"
 
 // The padder char set
 var chars = "abcdefghijklmnopqrstuvwxyz0123456789-"
+var lenChars int64 = int64(len(chars))
 
 // The string to int map
-var s2i = make(map[string]int, 0)
+var s2i = make(map[string]int64, 0)
 
 // The int to string map
-var i2s = make(map[int]string, 0)
+var i2s = make(map[int64]string, 0)
 
 // Ensure string only has valid padder chars
 func goodString(str string) bool {
@@ -48,8 +49,8 @@ func truncatePad(msg, pad string) string {
 }
 
 // Get ints from a string
-func getInts(str string) []int {
-	ints := make([]int, 0)
+func getInts(str string) []int64 {
+	ints := make([]int64, 0)
 
 	for _, c := range str {
 		i := s2i[string(c)]
@@ -60,8 +61,8 @@ func getInts(str string) []int {
 }
 
 // Add msg and pad ints
-func addInts(msg, pad []int) []int {
-	added := make([]int, 0)
+func addInts(msg, pad []int64) []int64 {
+	added := make([]int64, 0)
 
 	if len(msg) != len(pad) {
 		log.Fatal("msg and pad must be the same size!")
@@ -75,8 +76,8 @@ func addInts(msg, pad []int) []int {
 }
 
 // Subtract msg from pad ints
-func subInts(msg, pad []int) []int {
-	subed := make([]int, 0)
+func subInts(msg, pad []int64) []int64 {
+	subed := make([]int64, 0)
 
 	if len(msg) != len(pad) {
 		log.Fatal("msg and pad must be the same size!")
@@ -90,23 +91,23 @@ func subInts(msg, pad []int) []int {
 }
 
 // Given an int, return encrypted string
-func encrypt(i int) string {
-	var tmp int = 0
+func encrypt(i int64) string {
+	var tmp int64 = 0
 
-	if i > len(chars)-1 {
-		tmp = (i - len(chars)) % len(chars)
+	if i > lenChars-1 {
+		tmp = (i - lenChars) % lenChars
 	} else {
-		tmp = i % len(chars)
+		tmp = i % lenChars
 	}
 
 	return i2s[tmp]
 }
 
 // Given an int, return decrypted string
-func decrypt(i int) string {
-	var tmp int = 0
+func decrypt(i int64) string {
+	var tmp int64 = 0
 
-	tmp = (i + len(chars)) % len(chars)
+	tmp = (i + lenChars) % lenChars
 
 	return i2s[tmp]
 }

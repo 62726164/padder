@@ -28,7 +28,7 @@ func main() {
 
 	// build the i2s map
 	for i, c := range chars {
-		i2s[i] = string(c)
+		i2s[int64(i)] = string(c)
 	}
 
 	// build the s2i map
