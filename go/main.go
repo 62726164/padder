@@ -36,6 +36,8 @@ func main() {
 		s2i[s] = i
 	}
 
+	//genFakePad("white", "2c36e")
+
 	if *eflag {
 		if goodString(*msg) {
 			if goodString(*pad) {
