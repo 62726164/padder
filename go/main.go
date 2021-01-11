@@ -7,8 +7,10 @@ import (
 )
 
 func main() {
+	var cflag = flag.String("c", "", "the ciphertext to create a fake pad. requires -m and -f.")
 	var dflag = flag.Bool("d", false, "decrypt a message. requires -m and -p.")
 	var eflag = flag.Bool("e", false, "encrypt a message. requires -m and -p.")
+	var fflag = flag.Bool("f", false, "create a fake pad. requires -m and -c.")
 	var help = flag.Bool("help", false, "show help and exit")
 	var msg = flag.String("m", "", "the message to encrypt or decrypt.")
 	var pad = flag.String("p", "", "the pad to use to encrypt or decrypt.")
@@ -42,7 +44,7 @@ func main() {
 		if goodString(*msg) {
 			if goodString(*pad) {
 				if goodSize(*msg, *pad) {
-					tpad := truncatePad(*msg, *pad)
+					tpad := truncateStr(*msg, *pad)
 					mints := getInts(*msg)
 					pints := getInts(tpad)
 					aints := addInts(mints, pints)
@@ -67,7 +69,7 @@ func main() {
 		if goodString(*msg) {
 			if goodString(*pad) {
 				if goodSize(*msg, *pad) {
-					tpad := truncatePad(*msg, *pad)
+					tpad := truncateStr(*msg, *pad)
 					mints := getInts(*msg)
 					pints := getInts(tpad)
 					sints := subInts(mints, pints)
@@ -82,6 +84,23 @@ func main() {
 				}
 			} else {
 				fmt.Printf("The pad has invalid chars.\n")
+			}
+		} else {
+			fmt.Printf("The msg has invalid chars.\n")
+		}
+	}
+
+	if *fflag {
+		if goodString(*msg) {
+			if goodString(*cflag) {
+				if goodSize(*msg, *cflag) {
+					tcflag := truncateStr(*msg, *cflag)
+					genFakePad(*msg, tcflag)
+				} else {
+					fmt.Printf("The ciphertext is smaller than the msg.\n")
+				}
+			} else {
+				fmt.Printf("The ciphertext has invalid chars.\n")
 			}
 		} else {
 			fmt.Printf("The msg has invalid chars.\n")

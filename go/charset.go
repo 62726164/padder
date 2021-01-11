@@ -36,16 +36,17 @@ func goodSize(msg, pad string) bool {
 	return true
 }
 
-// Truncate pad
-// goodSize() has already made sure that msg <= pad
-func truncatePad(msg, pad string) string {
-	// msg < pad
-	if len(msg) < len(pad) {
-		//log.Printf("TruncatePad: %s\n", pad[:len(msg)])
-		return pad[:len(msg)]
+// Truncate str
+// goodSize() has already made sure that msg <= str
+// str is either pad (for encryption and decryption) or ciphertext (for fakepad)
+func truncateStr(msg, str string) string {
+	// msg < str
+	if len(msg) < len(str) {
+		//log.Printf("Truncate: %s\n", str[:len(msg)])
+		return str[:len(msg)]
 	}
-	// msg = pad
-	return pad
+	// msg = str
+	return str
 }
 
 // Get ints from a string

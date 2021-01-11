@@ -41,5 +41,10 @@ func genFakePad(fakeMsg, cipherText string) {
 			}
 		}
 	}
-	fmt.Printf("%v\n", fakePad)
+
+	fmt.Printf("FakePad: ")
+	for _, c := range fakePad {
+		fmt.Printf("%s", c)
+	}
+	fmt.Println()
 }
